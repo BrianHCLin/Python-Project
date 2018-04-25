@@ -1,5 +1,5 @@
 ## Stats 131 Group Project 
 
-### Group member: Brian, Aida, Ignat
+### Group members: Brian Lin, Aida Ylanan, Ignat Kulinka
 
-Date: 4/24/2018
+Date: 4/25/2018
