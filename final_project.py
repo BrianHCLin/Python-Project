@@ -72,7 +72,8 @@ sns.lmplot(x='MD_EARN_WNE_P10', y='COSTT4_A', data=df_return, fit_reg=False,
 
 
 #%%
-sns.lmplot(x='MD_EARN_WNE_P10', y='COSTT4_A', data=df_return, fit_reg=False,
+# Cost of university vs. ten-year median income
+sns.lmplot(x='COSTT4_A', y='MD_EARN_WNE_P10', data=df_return, fit_reg=False,
            hue='CONTROL', col='CONTROL', aspect=0.7)
 
 #%%
