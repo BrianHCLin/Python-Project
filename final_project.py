@@ -76,3 +76,32 @@ sns.lmplot(x='MD_EARN_WNE_P10', y='COSTT4_A', data=df_return, fit_reg=False,
            hue='CONTROL', col='CONTROL', aspect=0.7)
 
 #%%
+
+#Low income debt vs. median earnings of students after 10 years
+
+#HIGHDEG is the highest category of award conferred by the institution, 
+#in descending order of graduate degree/certificate, bachelor’s degree, associate’s degree, 
+#and certificate, calculated from the IPEDS Completions component.
+
+cols = ["MD_EARN_WNE_P10", "LO_INC_DEBT_MDN", "HIGHDEG", "CITY","DEBT_MDN"]
+
+low_income = df[cols]
+low_income = low_income[low_income != 'PrivacySuppressed']
+low_income = low_income.dropna()
+
+
+low_income["MD_EARN_WNE_P10"] = pd.to_numeric(low_income["MD_EARN_WNE_P10"])
+low_income["LO_INC_DEBT_MDN"] = pd.to_numeric(low_income["LO_INC_DEBT_MDN"])
+low_income["HIGHDEG"] = pd.to_numeric(low_income["HIGHDEG"])
+low_income["DEBT_MDN"] = pd.to_numeric(low_income["DEBT_MDN"])
+low_income.plot(x = "MD_EARN_WNE_P10", y = "LO_INC_DEBT_MDN", kind = "scatter", c = "HIGHDEG", colormap = "winter", alpha = 0.5)
+plt.show()
+
+#Compare the low income student median debt and overall student median debt 
+#greater than 1 = low income student has more debt than the overall median debt.
+low_income["DEBT_RATIO"] = low_income["LO_INC_DEBT_MDN"]/low_income["DEBT_MDN"]
+
+RATIO = low_income.loc[:,["DEBT_RATIO","CITY"]].groupby("CITY").mean().sort_values("DEBT_RATIO", ascending=True)
+
+print(RATIO.head(50))
+#%%
